@@ -1,0 +1,206 @@
+% Specifikace třídy dokumentu a základní velikosti písma.
+\documentclass[12pt, a4paper]{report}
+
+% Podpora češtiny
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+
+% Okraje stránky
+\usepackage[
+    left=30mm, 
+    right=30mm, 
+    top=40mm, 
+    bottom=30mm,
+%    twoside, % Při oboustranné sazbě si zkuste nastavit right=25mm a left=35mm.
+    % showframe % Vykreslí okraje stránky.
+]{geometry}
+
+% Americký styl odstavců (mně se tento styl líbí o poznání více)
+\usepackage{parskip}
+
+% Sazba obrázků
+\usepackage{graphicx}
+\graphicspath{{Images/}} % Při vkládání obrázků se bude prefixovat tato relativní cesta.
+
+% Barvičky a barevný text
+\usepackage[usenames, dvipsnames]{xcolor}
+\definecolor{success}{RGB}{25, 135, 84}
+
+% Velice praktický balík pro sazbu matematiky.
+\usepackage{amsmath}
+
+% Možnost změny rozvržení kapitol (pokročilejší záležitosti).
+% Význam argumentů je popsán v dokumentaci balíku `titlesec`: mirrors.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf
+%\usepackage[explicit,compact]{titlesec}
+%\titleformat{\chapter}[block]{\bfseries\huge}{\thechapter}{3ex}{#1}
+%\titlespacing{\chapter}{0mm}{\baselineskip}{\baselineskip}
+
+% Při použití tohoto balíku začnou fungovat odkazy v textu.
+% Zkuste třeba kliknout na odkazy v textu (např. "1.1" na straně 2) nebo v seznamu obrázků/tabulek.
+% `hidelinks` skryje ošklivé výchozí rámečky kolem odkazů.
+\usepackage[hidelinks]{hyperref}
+
+% Zařadí literaturu a seznamy do Obsahu.
+\usepackage[nottoc]{tocbibind}
+
+% Ukázka tvorby uživatelského makra
+\newcommand{\lawyertalk}{\tiny}
+
+% Začátek dokumentu
+\begin{document}
+
+% Titulní strana (prostředí minimálně odstraní číslo strany)
+\begin{titlepage}
+    \centering      % Odtud do konce prostředí bude vše na středu,
+    \Large          % velkými písmeny
+    \sffamily       % a bezpatkovým písmem.
+
+    %Vložení obrázku (ze složky `Images`)
+    \includegraphics[width=.7\textwidth]{fav}
+
+    Semestrální práce z předmětu
+
+    % Prázdná mezera mezi řádky znamená nový odstavec.
+    Programování v jazyce ANSI C
+    
+    % Vertikální mezera 18 mm.
+    \vspace{18mm}
+    {\Huge\bfseries Identifikace spamu naivním bayesovským klasifikátorem}
+
+    \vspace{18mm}
+    \today                          % Čas je získán ze systému.
+
+    \vfill                          % Vyplní prostor
+    \raggedright                    % Vše bude zarováno do leva.
+    \textsl{Autor:}\\   % Vtípek z přednášky + ukázka tvorby makra a přidání sémantiky do stylu textu.
+    Martin Reich\\               % Příkaz \\ provede násilný zlom řádky.
+    A22B0123P\\
+    \texttt{reichm@students.zcu.cz}
+    
+    \vspace{\baselineskip}
+    \textsl{Vyučující:}\\
+    Ing. Kamil Ekštein, Ph.D.\\
+    \texttt{kekstein@kiv.zcu.cz}
+\end{titlepage}
+
+% Takhle snadno se vytvoří obsah dokumentu.
+% V případně chybějícího záznamu zkuste dokument přeložit vícekrát.
+\tableofcontents
+
+% Ukázka odstranění čísla stránky -- první stránka obsahu ale má být číslovaná!
+%\thispagestyle{empty}
+
+% Sazba nové kapitoly (ve vašem případě zde bude zřejmě zkrácená verze "Zadání")
+\chapter{Úvod}
+Příliš žluťoučký kůň úpěl ďábelské ódy.
+
+\section{Sekce o něčem}
+\label{sec:necem}
+{\color{success}\bfseries Feministé odpustí...}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes,
+nascetur ridiculus mus. Aliquam ornare wisi eu metus. Maecenas lorem. Fusce aliquam vestibulum ipsum. Suspendisse nisl.
+Nulla non lectus sed nisl molestie malesuada. Integer malesuada. Itaque earum rerum hic tenetur a sapiente delectus, ut
+aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Fusce wisi. Mauris
+metus. Integer vulputate sem a nibh rutrum consequat. Maecenas lorem. In convallis. Tutos is visiblos inos obrazos
+\ref{fig:fav} v~sekocos \ref{sec:necem} nasos straniaros \pageref{fig:fav}.
+
+Suspendisse sagittis ultrices augue. Duis risus. Nam quis nulla. Vivamus luctus egestas leo\footnote{Poznámka pod čarou}.
+Praesent id justo in neque elementum ultrices. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et
+sollicitudin sem purus in lacus. Tabulus is viz \ref{tab:stehno}. Citátiére nikdymente nebylonáre jednoduššůre
+\cite{KnuthAOCP2}.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam ornare wisi eu metus.
+Maecenas lorem. Fusce aliquam vestibulum ipsum \cite{KnuthAOCP2}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.3\textwidth]{fav}
+    \caption{Logo naší milované fakulty}
+    \label{fig:fav}
+\end{figure}
+
+% Doporučuji tento generátor: https://www.tablesgenerator.com/
+% Generátor sázet tabulky i pomocí balíku `booktabs`, které vypadají opravdu lépe.
+\begin{table}%[h]
+    \centering
+    \caption{Tabulka jako býk...}
+    \begin{tabular}{ccp{3cm}}
+        \hline
+        \bfseries Sloupec 1 & \itshape Sloupec 2 & Sloupec 3 \\ \hline\hline
+        1 & 2 & 3 \\ 
+        4 & 5 & 6 \\
+        7 & 8 & 9 \\ \hline
+    \end{tabular}
+    \label{tab:stehno}
+\end{table}
+
+\subsection{Podsekce o něčem}
+
+\subsubsection{Podpodsekce o něčem}
+
+\section{Sekce o něčem dalším}
+
+\section{Sekce o matice}
+Suspendisse sagittis ultrices augue. Duis risus. Nam quis nulla. Vivamus luctus egestas leo. Praesent id justo in neque
+elementum $$\sin(a_{1}^2) = \sum_{0}^{2\pi}\frac{1}{n^2}$$ ultrices. Morbi imperdiet $\frac{1}{n^2}$, mauris ac auctor
+dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus \ref{equ:vzorec}.
+\begin{equation}
+    \gamma = c_{NB} = \arg\max_{c_i \in C}\left( P(c_i) \times \sum_{k\,\in\,\text{\bfseries pozice}}
+        \log (P(\langle\text{word}_k | c_i \rangle))\right)
+    \label{equ:vzorec}
+\end{equation}
+
+% Prostředí `equation*` odebírá label (číslo rovnice).
+\begin{equation*}
+    \iiint\limits_{V} \frac{1}{x^2}\,\mathrm{d}x
+\end{equation*}
+
+\section{Seznamy}
+Až přijdeš domů tak číslovaně:
+\begin{itemize}
+    \item zatop,
+    \item uvař,
+    \item umej nádobí
+    \item a jdi spát!
+\end{itemize}
+
+Až přijdeš domů tak číslovaně:
+\begin{enumerate}
+    \item zatop,
+    \item uvař,
+    \item umej nádobí
+    \item a jdi spát! 
+\end{enumerate}
+
+\section{Šílenosti}
+\v{m} \'{x}
+
+\chapter{Závěr}
+Deklarativní popis dokumentu v obyčejném "texťáku" (který může být mj. generovaný strojem -- třeba Doxygenem),
+automatické dělení slov, podpora vektorové grafiky, odkazování v~textu, generování obsahu, seznamů obrázků a~tabulek,
+geniálně prostá a~neprůstřelná bibliografie... nic z toho Vám jiné DTP softwary v dostatečné kvalitě nikdy nenabídnou.
+
+% První způsob sazby bibliografie.
+% https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX
+%\begin{thebibliography}{1}
+%    \bibitem{KnuthAOCP2} D. E. Knuth. \textit{The Art of Computer Programming, Volume 2 (3rd Ed.): Seminumerical
+%    Algorithms.} Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 1997.
+%\end{thebibliography}
+
+% Druhý způsob sazby bibliografie, kde se už nemusím starat o řezy písma, formát citace apod.
+% Strunkturovaný soubor `literatura.bib` navíc můžu snadno použít i v jiných dokumentech.
+% Navíc vám chybějící údaje kompilátor omlátí o hlavu, a to se vždy vyplatí!
+\bibliographystyle{unsrt}
+\bibliography{literatura}
+
+% Seznamy obrázků a tabulek
+\listoffigures
+\listoftables
+
+% Začátek příloh dokumentu
+\appendix
+\chapter{První kapitola v příloze dokumentu}
+
+\end{document}

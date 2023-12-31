@@ -1,0 +1,3 @@
+/home/trolky/C_semestralka/CMakeFiles/stegim.exe.dir
+/home/trolky/C_semestralka/CMakeFiles/edit_cache.dir
+/home/trolky/C_semestralka/CMakeFiles/rebuild_cache.dir
